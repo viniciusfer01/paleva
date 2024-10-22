@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      store: "Estabelecimento"
+    attributes:
+      store:
+        corporate_name: "Razão Social"
+        brand_name: "Nome Fantasia"
+        registration_number: "CNPJ"
+        full_address: "Endereço"
+        email: "Email"
+      

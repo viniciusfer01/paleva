@@ -18,7 +18,19 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to root_path do %>
+        <h1>Páleva</h1>
+      <% end %>
+      <nav>
+        <ul>
+          <li><%= link_to "Registrar Estabelecimento", new_store_path %></li>
+        </ul>
+      </nav>
+    </header>
     <main class="container mx-auto mt-28 px-5 flex">
+      <%= notice %>
+      <%= alert %>
       <%= yield %>
     </main>
   </body>

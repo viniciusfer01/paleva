@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "stores#index"
+
+  resources :stores
 end
