@@ -7,7 +7,6 @@ describe "User registers their store" do
 
     login_as user
     visit root_path
-    click_on 'Cadastrar Estabelecimento'
     fill_in "Nome Fantasia",	with: "Pastéis Zezin" 
     fill_in "Razão Social",	with: "Zezin Alimentos LTDA" 
     fill_in "CNPJ",	with: "789123" 
