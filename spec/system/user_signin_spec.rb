@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "User logs in" do
   it "succesfully" do
-    User.create!(cpf: '78945612', name: 'Zezin', last_name: 'do Teclados', 
+    User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
                         email: 'zezin@teclados.com', password: 'passwordpass')
 
     visit new_user_session_path

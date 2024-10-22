@@ -59,9 +59,18 @@ RSpec.describe User, type: :model do
       end
       
       it "false if cpf isn't unique" do
-        User.create!(cpf: '78945612', name: 'Zezin', last_name: 'do Teclados', 
+        User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
         email: 'zezin@teclados.com', password: '12345678910111213')
-        user = User.new(cpf: '78945612', name: 'Zezin', last_name: 'do Teclados', 
+        user = User.new(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+        email: 'zezin@teclados.com', password: '12345678910111213')
+        
+        result = user.valid?
+        
+        expect(result).to eq false 
+      end
+
+      it "false if cpf isn't valid" do
+        user = User.new(cpf: '78945612345', name: 'Zezin', last_name: 'do Teclados', 
         email: 'zezin@teclados.com', password: '12345678910111213')
         
         result = user.valid?

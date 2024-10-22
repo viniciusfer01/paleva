@@ -7,7 +7,7 @@ describe "User creates an account" do
     fill_in "E-mail",	with: "zezin@teclados.com"                         
     fill_in "Senha",	with: "passwordpass"
     fill_in "Confirme sua senha",	with: "passwordpass"
-    fill_in "CPF",	with: "2313213213"
+    fill_in "CPF",	with: "66101052001"
     fill_in "Nome",	with: "Zezin"
     fill_in "Sobrenome", with: "dos teclados"
     click_on 'Criar Usuário'
@@ -23,7 +23,7 @@ describe "User creates an account" do
     fill_in "E-mail",	with: ""                         
     fill_in "Senha",	with: "passwordpass"
     fill_in "Confirme sua senha",	with: "passwordpass"
-    fill_in "CPF",	with: "2313213213"
+    fill_in "CPF",	with: "66101052001"
     fill_in "Nome",	with: "Zezin"
     fill_in "Sobrenome", with: "dos teclados"
     click_on 'Criar Usuário'
