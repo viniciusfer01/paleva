@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "User creates an account" do
-  it "Succesfully" do
+  it "succesfully" do
     visit root_path
     click_on 'Criar Conta'
     fill_in "E-mail",	with: "zezin@teclados.com"                         
