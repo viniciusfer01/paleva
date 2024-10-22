@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "User registers their store" do
   it "succesfully" do
     user = User.create!(cpf: '78945612', name: 'Zezin', last_name: 'do Teclados', 

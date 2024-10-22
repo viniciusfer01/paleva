@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "User logs in" do
   it "succesfully" do
     User.create!(cpf: '78945612', name: 'Zezin', last_name: 'do Teclados', 
