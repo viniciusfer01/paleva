@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   root "stores#index"
 
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
+  resources :dishes
 end

@@ -1,0 +1,30 @@
+<h1>Registro do Prato</h1>
+
+<% if(@dish.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% @dish.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+    
+  </ul>
+<% end %>
+
+
+<%= form_with model: @dish do |form| %>
+  <div>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_field :description %>
+  </div>
+  <div>
+    <%= form.label :calories, "Calorias" %>
+    <%= form.number_field :calories %>
+  </div>
+  <div>
+    <%= form.submit "Enviar" %>
+  </div>
+<% end %>
