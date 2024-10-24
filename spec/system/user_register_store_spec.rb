@@ -8,13 +8,13 @@ describe "User registers their store" do
     login_as user
     visit root_path
     click_on 'Registrar Estabelecimento'
-    fill_in "Nome Fantasia",	with: "Pastéis Zezin" 
     fill_in "Razão Social",	with: "Zezin Alimentos LTDA" 
+    fill_in "Nome Fantasia",	with: "Pastéis Zezin" 
     fill_in "CNPJ",	with: "7891237891" 
     fill_in "Endereço Completo",	with: "Rua das tulipas, 18" 
-    fill_in "Horário de Funcionamento", with: "23456M123456"
     fill_in "Telefone",	with: "99999999999" 
     fill_in "Email",	with: "pasteis@zezin.com" 
+    fill_in "Horário de Funcionamento", with: "23456M123456"
     click_on 'Enviar'
 
     expect(page).to have_content 'Estabelecimento registrado com sucesso.'  
