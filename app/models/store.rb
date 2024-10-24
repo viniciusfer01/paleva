@@ -10,7 +10,7 @@ class Store < ApplicationRecord
 
   protected
   def generate_unique_code
-    self.code = SecureRandom.hex(6)
+    self.code = SecureRandom.alphanumeric(6)
   end
 
   def validate_cnpj

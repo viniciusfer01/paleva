@@ -125,5 +125,17 @@ RSpec.describe Store, type: :model do
       
       expect(result).to eq false  
     end
+    
+    it "code should have size 6" do
+      user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+                          email: 'zezin@teclados.com', password: 'passwordpass')
+      store = Store.new(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                        cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                        email: 'pasteis_zezin', schedule: '23456M123456', user: user)
+      
+      store.valid?
+      
+      expect(store.code.length).to eq 6  
+    end
   end
 end
