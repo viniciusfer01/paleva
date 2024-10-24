@@ -1,4 +1,24 @@
+<h1 class="font-bold text-4xl">Estabelecimento: <%= @store.code %></h1>
 <div>
-  <h1 class="font-bold text-4xl">Stores#show</h1>
-  <p>Find me in app/views/stores/show.html.erb</p>
+  <p>Razão Social <%= @store.corporate_name %></p>
 </div>
+<div>
+  <p>Nome Fantasia <%= @store.brand_name %></p>
+</div>
+<div>
+  <p>CNPJ <%= @store.cnpj %></p>
+</div>
+<div>
+  <p>Endereço Completo <%= @store.address %></p>
+</div>
+<div>
+  <p>Telefone <%= @store.phone %></p>
+</div>
+<div>
+  <p>Email <%= @store.email %></p>
+</div>
+<div>
+  <p>Horário de Funcionamento <%= @store.schedule %></p>
+</div>
+
+

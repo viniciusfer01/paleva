@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get "stores/index"
-  get "stores/new"
-  get "stores/show"
-  get "stores/create"
-  get "stores/edit"
-  get "stores/update"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -19,5 +13,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "stores#index"
 
-  resources :stores
+  resources :stores, only: [:edit, :update, :show, :index, :new, :create]
 end

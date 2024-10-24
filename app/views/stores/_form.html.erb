@@ -1,0 +1,43 @@
+<% if(store.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% store.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+    
+  </ul>
+<% end %>
+
+<%= form_with model: store do |form| %>
+  <div>
+    <%= form.label :brand_name, "Nome Fantasia" %>
+    <%= form.text_field :brand_name %>
+  </div>
+  <div>
+    <%= form.label :corporate_name, "Razão Social" %>
+    <%= form.text_field :corporate_name %>
+  </div>
+  <div>
+    <%= form.label :cnpj, 'CNPJ' %>
+    <%= form.text_field :cnpj %>
+  </div>
+  <div>
+    <%= form.label :address, 'Endereço Completo' %>
+    <%= form.text_area :address %>
+  </div>
+  <div>
+    <%= form.label :phone, 'Telefone' %>
+    <%= form.telephone_field :phone %>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :schedule, 'Horário de Funcionamento'%>
+    <%= form.text_area :schedule %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Enviar" %>
+  </div>
+<% end %>
