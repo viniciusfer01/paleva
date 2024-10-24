@@ -21,6 +21,21 @@ class DishesController < ApplicationController
     @dish = Dish.find params[:id]
   end
 
+  def edit 
+    @dish = Dish.find params[:id]
+  end
+
+  def update
+    @dish = Dish.find params[:id]
+    
+    if @dish.update dish_params
+      redirect_to @dish, notice: "Edição do Prato Efetuada com sucesso."  
+    else
+      flash.now[:notice] = 'Não foi possível editar o prato.'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def dish_params
     params.require(:dish).permit(:name, :description, :calories)
