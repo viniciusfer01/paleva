@@ -1,0 +1,15 @@
+<h2>Pratos do estabelecimento:</h2>
+
+<% if @dishes.any? %>
+  <% @dishes.each do |dish| %>
+    <dl>
+        <dt>Nome:</dt>
+        <dd><%= dish.name %></dd>
+        <dt>Descrição:</dt>
+        <dd><%= dish.description %></dd>
+      <p><%= dish.calories %> kcal</p>
+    </dl>
+  <% end %>
+<% else %>
+  <p>No dishes yet...</p>
+<% end %>

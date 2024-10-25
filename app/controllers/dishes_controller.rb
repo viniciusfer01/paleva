@@ -36,6 +36,10 @@ class DishesController < ApplicationController
     end
   end
 
+  def index
+    @dishes = Dish.all 
+  end
+
   private
   def dish_params
     params.require(:dish).permit(:name, :description, :calories)
