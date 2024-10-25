@@ -4,10 +4,9 @@
   <% @dishes.each do |dish| %>
     <dl>
         <dt>Nome:</dt>
-        <dd><%= dish.name %></dd>
-        <dt>Descrição:</dt>
-        <dd><%= dish.description %></dd>
-      <p><%= dish.calories %> kcal</p>
+        <dd><%= link_to dish.name, dish %></dd>
+        <p><%= dish.calories %> kcal</p>
+        <dt>:</dt>
     </dl>
   <% end %>
 <% else %>

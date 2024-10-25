@@ -1,5 +1,6 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_owner, only: [:show, :edit, :update, :destroy]
 
   def new
     @dish = Dish.new
@@ -37,11 +38,26 @@ class DishesController < ApplicationController
   end
 
   def index
-    @dishes = Dish.all 
+    @dishes = Dish.where(store: current_user.store) 
+  end
+
+  def destroy
+    @dish = Dish.find params[:id]
+
+    if @dish.destroy!
+      redirect_to dishes_path, notice: 'Prato deletado com sucesso'
+    end
   end
 
   private
   def dish_params
     params.require(:dish).permit(:name, :description, :calories)
+  end
+
+  def check_owner
+    dish = Dish.find params[:id]
+    if current_user.store != dish.store
+      redirect_to root_path 
+    end
   end
 end
