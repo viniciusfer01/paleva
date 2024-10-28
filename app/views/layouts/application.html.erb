@@ -30,6 +30,13 @@
             <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
             <li><%= link_to "Meus pratos", dishes_path %></li>
             <li><%= link_to "Minhas Bebidas", beverages_path %></li>
+
+            <%= form_with(url: search_path, method: :get) do |form| %>
+              <%= form.label :query, 'Buscar item' %>
+              <%= form.text_field :query %>
+              <%= form.submit 'Buscar' %>
+            <% end %>
+
             <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to 'Entrar', new_user_session_path %></li>

@@ -1,0 +1,38 @@
+<h1>Resultados da busca por: <%= @query %></h1>
+
+<p><%= @count %> item(s) encontrado(s)</p>
+<% if @results[:dishes].any? %>
+<h2>Pratos:</h2>
+    <dl>
+      <% @results[:dishes].each do |dish| %>
+        <dt>Nome:</dt>
+        <dd>
+            <%= link_to dish.name, dish_path(dish) %>
+        <dd>
+        <dt>Descrição:</dt>
+        <dd>
+            <%= dish.description %>
+        </dd>
+      <% end %>
+    </dl>
+<% else %>
+  <p>Não houveram pratos encontrados.</p>
+<% end %>
+
+<% if @results[:beverages].any? %>
+<h2>Bebidas:</h2>
+  <dl>
+    <% @results[:beverages].each do |beverage| %>
+      <dt>Nome: </dt>
+      <dd>
+        <%= link_to beverage.name, beverage_path(beverage) %>
+      </dd>
+      <dt>Descrição:</dt>
+      <dd>
+        <%= beverage.description %>
+      </dd>
+    <% end %>
+  </dl>
+<% else %>
+  <p>Não houveram bebidas encontradas.</p>
+<% end %>
