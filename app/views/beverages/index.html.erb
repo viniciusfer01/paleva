@@ -1,0 +1,14 @@
+<h2>Bebidas do estabelecimento:</h2>
+
+<% if @beverages.any? %>
+  <% @beverages.each do |beverage| %>
+    <dl>
+        <dt>Nome:</dt>
+        <dd><%= link_to beverage.name, beverage %></dd>
+        <p><%= beverage.calories %> kcal</p>
+        <p><%= beverage.is_alcoholic %> kcal</p>
+    </dl>
+  <% end %>
+<% else %>
+  <p>No beverages yet...</p>
+<% end %>

@@ -1,0 +1,32 @@
+<% if(beverage.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% beverage.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+    
+  </ul>
+<% end %>
+
+
+<%= form_with model: beverage do |form| %>
+  <div>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :is_alcoholic, "É alcoólica?" %>
+    <%= form.check_box :is_alcoholic %>
+  </div>
+  <div>
+    <%= form.label :calories, "Calorias" %>
+    <%= form.number_field :calories %>
+  </div>
+  <div>
+    <%= form.submit "Enviar" %>
+  </div>
+<% end %>

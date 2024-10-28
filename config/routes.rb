@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
   resources :dishes
+  resources :beverages
 end
