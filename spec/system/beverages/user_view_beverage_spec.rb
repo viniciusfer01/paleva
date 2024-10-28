@@ -39,6 +39,6 @@ describe "User views their beverage" do
     expect(page).not_to have_content 'Bebida: Refrigerante Guaraná'  
     expect(page).not_to have_content 'Descrição: Refrigerante feito com uma fruta típica brasileira'  
     expect(page).not_to have_content '1200 kcal'
-    expect(page).to have_content 'Estabelecimentos'
+    expect(page).to have_content 'Por favor, registre sua loja.'
   end
 end

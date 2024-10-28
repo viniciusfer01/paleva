@@ -48,6 +48,10 @@ describe "User sees the beverages" do
     store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
     cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
     email: 'pasteis@zezin.com', schedule: '23456M123456', user: second_user)
+
+    Store.create!(corporate_name: 'Zezin Alimentos2 LTDA', brand_name: 'Pastéis Zezin2', 
+    cnpj: '66345931000130', address: 'Rua das tulipas, 180', phone: '2345123426', 
+    email: 'pasteis2@zezin.com', schedule: '23456M12346', user: first_user)
     
     Beverage.create!(name: 'YoPro', description: 'Bebida para o público fit sabor chocolate', calories: 99, is_alcoholic: false, store: store)
     

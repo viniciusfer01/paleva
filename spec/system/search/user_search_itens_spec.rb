@@ -165,4 +165,8 @@ describe 'User searches for dish' do
 
     expect(current_path).to eq edit_dish_path(dish)  
   end
+
+  it "user searches for a dish that isn't theirs" do 
+    
+  end
 end

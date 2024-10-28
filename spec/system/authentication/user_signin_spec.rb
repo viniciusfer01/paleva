@@ -10,7 +10,7 @@ describe "User logs in" do
     fill_in "Senha",	with: "passwordpass"
     click_on "Log in"
     
-    expect(page).to have_content 'Login efetuado com sucesso.' 
+    expect(page).to have_content 'Por favor, registre sua loja.' 
     within('nav') do 
       expect(page).to have_content 'Sair'
       expect(page).not_to have_content 'Entrar' 

@@ -1,6 +1,7 @@
 class SearchService
-  def initialize(query)
+  def initialize(query, user)
     @query = query
+    @user = user
   end
 
   def call
@@ -13,10 +14,10 @@ class SearchService
   private
 
   def search_dishes
-    Dish.where('name LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%")
+    Dish.where('(name LIKE ? OR description LIKE ?) AND store_id = ? ', "%#{@query}%", "%#{@query}%", @user.store.id)
   end
 
   def search_beverages
-    Beverage.where('name LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%")
+    Beverage.where('(name LIKE ? OR description LIKE ?) AND store_id = ? ', "%#{@query}%", "%#{@query}%", @user.store.id)
   end
 end
