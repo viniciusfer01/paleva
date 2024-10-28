@@ -126,4 +126,43 @@ describe 'User searches for dish' do
     expect(page).to have_content 'Não houveram bebidas encontradas.'   
     expect(page).to have_content '0 item(s) encontrado(s)'   
   end
+
+  it 'and finds an item by name and see its details' do
+    user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+    email: 'zezin@teclados.com', password: 'passwordpass')
+
+    store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                      cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                      email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+
+    beverage = Beverage.create!(name: 'Refrigerante Guaraná', description: 'Refrigerante feito com uma fruta típica brasileira', 
+                                calories: 1200, is_alcoholic: false, store: store)
+
+    login_as user
+    visit root_path
+    fill_in "Buscar item",	with: "#{beverage.name}" 
+    click_on 'Buscar'
+    click_on "#{beverage.name}"
+
+    expect(current_path).to eq beverage_path(beverage)  
+  end
+
+  it 'finds an item by description, and edits it' do
+    user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+    email: 'zezin@teclados.com', password: 'passwordpass')
+
+    store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                      cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                      email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+
+    dish = Dish.create!(name: 'Pizza', description: 'Prato Italiano, que serve 3 a 4 pessoas', calories: 1200, store: store)
+
+    login_as user
+    visit root_path
+    fill_in "Buscar item",	with: "Italiano" 
+    click_on 'Buscar'
+    click_on 'Editar'
+
+    expect(current_path).to eq edit_dish_path(dish)  
+  end
 end
