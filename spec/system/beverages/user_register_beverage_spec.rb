@@ -3,9 +3,8 @@ require 'rails_helper'
 describe "User registers beverages" do
     it "unsuccessful if not authenticated" do
       visit root_path
-      click_on 'Registrar Bebidas' 
 
-      expect(current_path).to eq new_user_session_path
+      expect(page).not_to have_content 'Registrar Bebidas'
     end
 
     it "succesfully" do

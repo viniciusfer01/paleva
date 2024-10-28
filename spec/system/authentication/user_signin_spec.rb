@@ -11,5 +11,9 @@ describe "User logs in" do
     click_on "Log in"
     
     expect(page).to have_content 'Login efetuado com sucesso.' 
+    within('nav') do 
+      expect(page).to have_content 'Sair'
+      expect(page).not_to have_content 'Entrar' 
+    end
   end
 end

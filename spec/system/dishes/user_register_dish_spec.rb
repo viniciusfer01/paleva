@@ -3,9 +3,8 @@ require 'rails_helper'
 describe "User registers dishes" do
     it "unsuccessful if not authenticated" do
       visit root_path
-      click_on 'Registrar Pratos' 
 
-      expect(current_path).to eq new_user_session_path
+      expect(page).not_to have_content 'Registrar Pratos'
     end
 
     it "succesfully" do
