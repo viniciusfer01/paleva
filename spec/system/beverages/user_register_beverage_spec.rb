@@ -24,7 +24,7 @@ describe "User registers beverages" do
       fill_in "Calorias",	with: "120"
       click_on 'Enviar'
 
-      expect(page).to have_content 'Registro da Bebida Efetuado com sucesso.'  
+      expect(page).to have_content 'Registro da bebida Efetuado com sucesso.'  
       expect(page).to have_content 'Bebida: Suco de maracujá'  
       expect(page).to have_content 'Descrição: Suco de frutas natural.'  
       expect(page).to have_content '120 kcal'  
@@ -46,8 +46,8 @@ describe "User registers beverages" do
       fill_in "Calorias",	with: "120"
       click_on 'Enviar'
 
-      expect(page).not_to have_content 'Registro da Bebida Efetuado com sucesso.'  
-      expect(page).to have_content 'Não foi possível registrar a Bebida.'         
+      expect(page).not_to have_content 'Registro da bebida Efetuado com sucesso.'  
+      expect(page).to have_content 'Não foi possível registrar a bebida.'         
       expect(page).to have_content 'Name não pode ficar em branco'         
     end
 end
