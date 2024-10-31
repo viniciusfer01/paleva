@@ -47,6 +47,6 @@ describe "User registers beverages" do
 
       expect(page).not_to have_content 'Registro da bebida Efetuado com sucesso.'  
       expect(page).to have_content 'Não foi possível registrar a bebida.'         
-      expect(page).to have_content 'Name não pode ficar em branco'         
+      expect(page).to have_content 'Nome não pode ficar em branco'         
     end
 end

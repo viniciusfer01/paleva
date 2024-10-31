@@ -1,11 +1,19 @@
-<h2>Bebida: <%= @beverage.name %></h2>
+<h2>Detalhes da Bebida: <%= @beverage.name %></h2>
 <dl>
     <dt>Descrição:</dt>
     <dd><%= @beverage.description %></dd>
-    <dt>É alcoólica?</dt>
+    <dt><%= Beverage.human_attribute_name(:is_alcoholic) %>?</dt>
     <dd><%= @beverage.is_alcoholic %></dd>
+    <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
+    <dd><%= I18n.translate(@beverage.status) %></dd>
 </dl>
     <p><%= @beverage.calories %> kcal</p>
+
+<% if @beverage.active? %>
+  <%= button_to 'Desativar Bebida', inactive_beverage_path %>
+<% else %>
+  <%= button_to 'Ativar Bebida', active_beverage_path %>
+<% end %>
 
 <%= link_to 'Editar', edit_beverage_path(@beverage) %>
 <%= link_to 'Deletar', beverage_path(@beverage), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>

@@ -1,6 +1,6 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner, only: [:show, :edit, :update, :destroy]
+  before_action :set_beverage_and_check_owner, only: [:show, :edit, :update, :destroy, :inactive, :active]
 
   def new
     @beverage = Beverage.new
@@ -19,16 +19,12 @@ class BeveragesController < ApplicationController
   end
 
   def show
-    @beverage = Beverage.find params[:id]
   end
 
   def edit 
-    @beverage = Beverage.find params[:id]
   end
 
-  def update
-    @beverage = Beverage.find params[:id]
-    
+  def update    
     if @beverage.update dish_params
       redirect_to @beverage, notice: "Edição da bebida efetuada com sucesso."  
     else
@@ -38,15 +34,25 @@ class BeveragesController < ApplicationController
   end
 
   def index
-    @beverages = Beverage.where(store: current_user.store) 
+    @beverages = current_user.store.beverages
   end
 
   def destroy
-    @beverage = Beverage.find params[:id]
-
     if @beverage.destroy!
       redirect_to beverages_path, notice: 'Bebida deletada com sucesso'
     end
+  end
+
+  def inactive
+    @beverage.inactive!
+
+    redirect_to @beverage, notice: 'Status da Bebida atualizado com sucesso.'
+  end
+
+  def active
+    @beverage.active!
+
+    redirect_to @beverage, notice: 'Status da Bebida atualizado com sucesso.'
   end
 
   private
@@ -54,9 +60,9 @@ class BeveragesController < ApplicationController
     params.require(:beverage).permit(:name, :description, :calories, :is_alcoholic)
   end
 
-  def check_owner
-    beverage = Beverage.find params[:id]
-    if current_user.store != beverage.store
+  def set_beverage_and_check_owner
+    @beverage = Beverage.find params[:id]
+    if @beverage.store != current_user.store 
       redirect_to root_path 
     end
   end
