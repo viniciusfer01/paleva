@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
   resources :dishes do 
         post :inactive, on: :member
+        post :active, on: :member
   end 
   resources :beverages
   get 'search', to: 'searches#index'

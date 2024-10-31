@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_dish_and_check_owner, only: [:show, :edit, :update, :destroy, :inactive]
+  before_action :set_dish_and_check_owner, only: [:show, :edit, :update, :destroy, :inactive, :active]
 
   def new
     @dish = Dish.new
@@ -45,6 +45,11 @@ class DishesController < ApplicationController
 
   def inactive
     @dish.inactive!
+    redirect_to @dish, notice: 'Status do Prato atualizado com sucesso.'
+  end
+
+  def active
+    @dish.active!
     redirect_to @dish, notice: 'Status do Prato atualizado com sucesso.'
   end
 

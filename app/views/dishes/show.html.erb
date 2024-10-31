@@ -10,6 +10,7 @@
 
 
 <%= button_to 'Desativar Prato', inactive_dish_path %>
+<%= button_to 'Ativar Prato', active_dish_path %>
 
 <%= link_to 'Editar', edit_dish_path(@dish) %>
 <%= link_to 'Deletar', dish_path(@dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
