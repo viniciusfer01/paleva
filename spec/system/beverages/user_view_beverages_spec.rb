@@ -10,7 +10,8 @@ describe "User sees the beverages" do
                   email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
 
     Beverage.create!(name: 'YoPro', description: 'Bebida para o público fit sabor chocolate', calories: 99, is_alcoholic: false, store: store)
-    Beverage.create!(name: 'Cerveja Bacon beer', description: 'Cerveja de bacon ultra fat', calories: 1500, is_alcoholic: true, store: store)
+    Beverage.create!(name: 'Cerveja Bacon beer', description: 'Cerveja de bacon ultra fat', 
+                     calories: 1500, is_alcoholic: true, store: store, status: 'inactive')
     
     login_as user
     visit root_path
@@ -19,9 +20,11 @@ describe "User sees the beverages" do
     expect(page).to have_content 'Bebidas do estabelecimento:'
     expect(page).to have_content 'Nome: YoPro'  
     expect(page).to have_content '99 kcal'  
+    expect(page).to have_content 'Status da Bebida: Ativo'  
     expect(page).to have_content 'Cerveja Bacon beer'  
     expect(page).to have_content '1500 kcal'  
     expect(page).to have_content 'true'  
+    expect(page).to have_content 'Status da Bebida: Inativo'  
   end
 
   it "fails because there aren't any beverages" do
@@ -36,7 +39,7 @@ describe "User sees the beverages" do
     visit root_path
     click_on 'Minhas Bebidas'                          
     
-    expect(page).to have_content 'No beverages yet...'
+    expect(page).to have_content 'Ainda não há Bebidas cadastradas...'
   end
 
   it "but fails, because the user doesn't own the store" do
@@ -62,6 +65,6 @@ describe "User sees the beverages" do
     expect(page).not_to have_content 'Prato: YoPro'  
     expect(page).not_to have_content 'Descrição: Bebida para o público fit sabor chocolate'  
     expect(page).not_to have_content '99 kcal'
-    expect(page).to have_content 'No beverages yet...'
+    expect(page).to have_content 'Ainda não há Bebidas cadastradas...'
   end
 end

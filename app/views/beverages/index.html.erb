@@ -7,8 +7,9 @@
         <dd><%= link_to beverage.name, beverage %></dd>
         <p><%= beverage.calories %> kcal</p>
         <p><%= beverage.is_alcoholic %> kcal</p>
+        <p><%= Beverage.human_attribute_name(:status) %>: <%= I18n.translate(beverage.status) %></p>
     </dl>
   <% end %>
 <% else %>
-  <p>No beverages yet...</p>
+  <p>Ainda não há Bebidas cadastradas...</p>
 <% end %>
