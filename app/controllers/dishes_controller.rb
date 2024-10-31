@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish_and_check_owner, only: [:show, :edit, :update, :destroy, :inactive]
 
   def new
     @dish = Dish.new
@@ -19,16 +19,12 @@ class DishesController < ApplicationController
   end
 
   def show
-    @dish = Dish.find params[:id]
   end
 
   def edit 
-    @dish = Dish.find params[:id]
   end
 
   def update
-    @dish = Dish.find params[:id]
-    
     if @dish.update dish_params
       redirect_to @dish, notice: "Edição do Prato Efetuada com sucesso."  
     else
@@ -38,15 +34,18 @@ class DishesController < ApplicationController
   end
 
   def index
-    @dishes = Dish.where(store: current_user.store) 
+    @dishes = current_user.store.dishes
   end
 
   def destroy
-    @dish = Dish.find params[:id]
-
     if @dish.destroy!
       redirect_to dishes_path, notice: 'Prato deletado com sucesso'
     end
+  end
+
+  def inactive
+    @dish.inactive!
+    redirect_to @dish, notice: 'Status do Prato atualizado com sucesso.'
   end
 
   private
@@ -54,9 +53,9 @@ class DishesController < ApplicationController
     params.require(:dish).permit(:name, :description, :calories)
   end
 
-  def check_owner
-    dish = Dish.find params[:id]
-    if current_user.store != dish.store
+  def set_dish_and_check_owner
+    @dish = Dish.find params[:id]
+    if @dish.store != current_user.store
       redirect_to root_path 
     end
   end

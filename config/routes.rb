@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   root "stores#index"
 
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
-  resources :dishes 
+  resources :dishes do 
+        post :inactive, on: :member
+  end 
   resources :beverages
   get 'search', to: 'searches#index'
 end

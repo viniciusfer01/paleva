@@ -1,0 +1,17 @@
+pt-BR:
+  inactive: "Inativo"
+  active: "Ativo"
+  activerecord:
+    models:
+      dish:
+        one: "Prato"
+        other: "Pratos"
+    attributes:
+      dish:
+        name: "Nome"
+        description: "Descrição"
+        status: "Status do Prato"
+        store_id: "Estabelecimento"
+        calories: "Calorias"
+
+      

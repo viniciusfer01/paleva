@@ -1,9 +1,15 @@
-<h2>Prato: <%= @dish.name %></h2>
+<h2>Detalhes do Prato: <%= @dish.name %></h2>
 <dl>
-    <dt>Descrição:</dt>
+    <dt><%= Dish.human_attribute_name(:description)%>:</dt>
     <dd><%= @dish.description %></dd>
+    <dt><%= Dish.human_attribute_name(:status) %>:</dt>
+    <dd><%= I18n.t(@dish.status) %></dd>
 </dl>
     <p><%= @dish.calories %> kcal</p>
+
+
+
+<%= button_to 'Desativar Prato', inactive_dish_path %>
 
 <%= link_to 'Editar', edit_dish_path(@dish) %>
 <%= link_to 'Deletar', dish_path(@dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>

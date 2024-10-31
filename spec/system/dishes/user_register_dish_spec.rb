@@ -47,6 +47,6 @@ describe "User registers dishes" do
 
       expect(page).not_to have_content 'Registro do Prato Efetuado com sucesso.'  
       expect(page).to have_content 'Não foi possível registrar o prato.'         
-      expect(page).to have_content 'Name não pode ficar em branco'         
+      expect(page).to have_content 'Nome não pode ficar em branco'         
     end
 end
