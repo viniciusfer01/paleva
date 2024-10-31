@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 describe 'User informs new dish status' do 
-  it 'and its not authenticated' do 
-    
-  end
-
   it 'and dish is set not visible' do 
     user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
     email: 'zezin@teclados.com', password: 'passwordpass')
@@ -25,6 +21,8 @@ describe 'User informs new dish status' do
     expect(current_path).to eq dish_path(dish)
     expect(page).to have_content 'Status do Prato atualizado com sucesso.'
     expect(page).to have_content 'Status do Prato: Inativo'
+    expect(page).not_to have_content 'Desativar Prato' 
+    expect(page).to have_content 'Ativar Prato'  
   end
 
   it 'and dish is set visible' do 
@@ -47,9 +45,7 @@ describe 'User informs new dish status' do
     expect(current_path).to eq dish_path(dish)
     expect(page).to have_content 'Status do Prato atualizado com sucesso.'
     expect(page).to have_content 'Status do Prato: Ativo'
-  end
-
-  it 'and doesnt see the other toggle status button' do 
-    
+    expect(page).not_to have_content 'Ativar Prato' 
+    expect(page).to have_content 'Desativar Prato' 
   end
 end
