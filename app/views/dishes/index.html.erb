@@ -6,6 +6,7 @@
         <dt>Nome:</dt>
         <dd><%= link_to dish.name, dish %></dd>
         <p><%= dish.calories %> kcal</p>
+        <p><%= Dish.human_attribute_name(:status) %>: <%= I18n.translate(dish.status) %></p>
     </dl>
   <% end %>
 <% else %>

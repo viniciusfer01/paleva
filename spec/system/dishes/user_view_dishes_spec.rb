@@ -10,7 +10,8 @@ describe "User sees the dishes" do
                   email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
 
     Dish.create!(name: 'Pizza', description: 'Prato Italiano, que serve 3 a 4 pessoas', calories: 1200, store: store)
-    Dish.create!(name: 'Feijoada', description: 'Comida típica da cozinha Brasileira, serve 3 a 4 pessoas', calories: 1500, store: store)
+    Dish.create!(name: 'Feijoada', description: 'Comida típica da cozinha Brasileira, serve 3 a 4 pessoas', 
+                 calories: 1500, store: store, status: 'inactive')
     
     login_as user
     visit root_path
@@ -19,8 +20,10 @@ describe "User sees the dishes" do
     expect(page).to have_content 'Pratos do estabelecimento:'
     expect(page).to have_content 'Nome: Pizza'  
     expect(page).to have_content '1200 kcal'  
+    expect(page).to have_content 'Status do Prato: Ativo'  
     expect(page).to have_content 'Feijoada'  
-    expect(page).to have_content '1500 kcal'  
+    expect(page).to have_content '1500 kcal' 
+    expect(page).to have_content 'Status do Prato: Inativo'   
   end
 
   it "fails because there aren't any dishes" do
