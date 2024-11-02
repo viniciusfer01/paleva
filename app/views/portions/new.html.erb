@@ -1,0 +1,15 @@
+<h1>Cadastrar Porção</h1>
+
+<%= form_with model: [@beverage, @portion] do |f| %>
+  <div>
+    <%= f.label :description, 'Descrição:' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :price, 'Preço:' %>
+    <%= f.number_field :price %>
+  </div>
+  
+  <%= f.submit 'Gravar' %>
+
+<% end %>

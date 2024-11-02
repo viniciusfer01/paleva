@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :beverages do 
     post :inactive, on: :member
     post :active, on: :member
+    resources :portions, only: [:new, :create]
   end
   get 'search', to: 'searches#index'
 end

@@ -15,5 +15,15 @@
   <%= button_to 'Ativar Bebida', active_beverage_path %>
 <% end %>
 
+<% @beverage.portions.each do |portion| %>
+  <dl>
+    <dt>Descrição:</dt>
+    <dd><%= portion.description %></dd>
+    <dt>Preço:</dt>
+    <dd><%= number_to_currency((portion.price)/100.0) %></dd>
+  </dl>
+<% end %>
+
+<%= link_to 'Adicionar Porções', new_beverage_portion_path(@beverage) %>
 <%= link_to 'Editar', edit_beverage_path(@beverage) %>
 <%= link_to 'Deletar', beverage_path(@beverage), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
