@@ -38,7 +38,7 @@ describe "User sees the dishes" do
     visit root_path
     click_on 'Meus pratos'                          
     
-    expect(page).to have_content 'No dishes yet...'
+    expect(page).to have_content 'Não há pratos cadastrados ainda...'
   end
 
   it "but fails, because the user doesn't own the store" do
@@ -64,6 +64,6 @@ describe "User sees the dishes" do
     expect(page).not_to have_content 'Prato: Pizza'  
     expect(page).not_to have_content 'Descrição: Prato Italiano, que serve 3 a 4 pessoas'  
     expect(page).not_to have_content '1200 kcal'
-    expect(page).to have_content 'No dishes yet...'
+    expect(page).to have_content 'Não há pratos cadastrados ainda...'
   end
 end
