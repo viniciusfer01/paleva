@@ -1,0 +1,15 @@
+<h2>Editar porção: <%= @portion.description %></h2>
+
+<%= form_with model: [@portionable, @portion] do |f| %>
+  <div>
+    <%= f.label :description, 'Descrição:' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :price, 'Preço:' %>
+    <%= f.number_field :price %>
+  </div>
+  
+  <%= f.submit 'Gravar' %>
+
+<% end %>

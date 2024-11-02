@@ -16,6 +16,21 @@ class PortionsController < ApplicationController
     end
   end
 
+  def edit
+    @portion = @portionable.portions.find(params[:id])
+  end
+
+  def update
+    @portion = @portionable.portions.find(params[:id])
+
+    if @portion.update(portion_params)
+      redirect_to @portionable, notice: 'Porção atualizada com sucesso'
+    else 
+      flash.now[:notice] = 'Não foi possível editar a porção'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def portion_params
     params.require(:portion).permit(:description, :price)

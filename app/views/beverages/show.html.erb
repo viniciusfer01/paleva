@@ -18,7 +18,7 @@
 <% @beverage.portions.each do |portion| %>
   <dl>
     <dt>Descrição:</dt>
-    <dd><%= portion.description %></dd>
+    <dd><%= link_to portion.description, edit_beverage_portion_path(@beverage, portion) %></dd>
     <dt>Preço:</dt>
     <dd><%= number_to_currency((portion.price)/100.0) %></dd>
   </dl>
