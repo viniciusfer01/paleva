@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :dishes do 
     post :inactive, on: :member
     post :active, on: :member
+    resources :portions, only: [:new, :create]
   end 
   resources :beverages do 
     post :inactive, on: :member

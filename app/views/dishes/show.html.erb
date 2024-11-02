@@ -14,5 +14,15 @@
   <%= button_to 'Ativar Prato', active_dish_path %>
 <% end %>
 
+<% @dish.portions.each do |portion| %>
+  <dl>
+    <dt>Descrição:</dt>
+    <dd><%= portion.description %></dd>
+    <dt>Preço:</dt>
+    <dd><%= number_to_currency((portion.price)/100.0) %></dd>
+  </dl>
+<% end %>
+
+<%= link_to 'Adicionar Porções', new_dish_portion_path(@dish) %>
 <%= link_to 'Editar', edit_dish_path(@dish) %>
 <%= link_to 'Deletar', dish_path(@dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
