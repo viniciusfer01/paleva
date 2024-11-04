@@ -4,6 +4,7 @@ class DishesController < ApplicationController
 
   def new
     @dish = Dish.new
+    @traits = Trait.all
   end
 
   def create
@@ -11,6 +12,7 @@ class DishesController < ApplicationController
     @dish.store = current_user.store
 
     if @dish.save
+      @dish.traits << Trait.find(params[:dish][:trait_id]) if params[:dish][:trait_id]
       redirect_to @dish, notice: "Registro do Prato Efetuado com sucesso." 
     else
       flash.now[:notice] = 'Não foi possível registrar o prato.'

@@ -23,6 +23,10 @@
     <%= form.number_field :calories %>
   </div>
   <div>
+    <%= form.label :trait_id, 'Tipo' %><br>
+    <%= form.collection_select :trait_id, @traits, :id, :name %>
+  </div>
+  <div>
     <%= form.submit "Enviar" %>
   </div>
 <% end %>

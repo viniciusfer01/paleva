@@ -23,6 +23,13 @@
   </dl>
 <% end %>
 
+<% @dish.traits.each do |trait| %>
+  <dl>
+    <dt>Tipo:</dt>
+    <dd><%= trait.name %></dd>
+  </dl>
+<% end %>
+
 <%= link_to 'Adicionar Porções', new_dish_portion_path(@dish) %>
 <%= link_to 'Editar', edit_dish_path(@dish) %>
 <%= link_to 'Deletar', dish_path(@dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
