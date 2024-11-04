@@ -15,7 +15,7 @@ describe "User registers dishes" do
                     cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
                     email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)      
                     
-      Trait.create!(name: 'Sem glúten')                        
+      Trait.create!(name: 'Contém glúten')                        
       Trait.create!(name: 'Contém Lactose')                        
       Trait.create!(name: 'Prato Apimentado')  
 
@@ -25,7 +25,8 @@ describe "User registers dishes" do
       fill_in "Nome",	with: "Pizza"
       fill_in "Descrição",	with: "Prato típico da cozinha Italiana, serve 3 a 4 pessoas."
       fill_in "Calorias",	with: "1200"
-      select 'Contém Lactose', from: 'Tipo'
+      select 'Contém Lactose', from: 'Tipos'
+      select 'Contém glúten', from: 'Tipos'
       click_on 'Enviar'
       
       
@@ -33,6 +34,7 @@ describe "User registers dishes" do
       expect(page).to have_content 'Prato: Pizza'  
       expect(page).to have_content 'Descrição: Prato típico da cozinha Italiana, serve 3 a 4 pessoas.'  
       expect(page).to have_content '1200 kcal'  
+      expect(page).to have_content 'Contém glúten'  
       expect(page).to have_content 'Contém Lactose'  
     end
 

@@ -12,7 +12,8 @@ class DishesController < ApplicationController
     @dish.store = current_user.store
 
     if @dish.save
-      @dish.traits << Trait.find(params[:dish][:trait_id]) if params[:dish][:trait_id]
+      trait_ids = params[:dish][:trait_ids].reject(&:blank?)
+      @dish.traits << Trait.find(trait_ids) if trait_ids.any?
       redirect_to @dish, notice: "Registro do Prato Efetuado com sucesso." 
     else
       flash.now[:notice] = 'Não foi possível registrar o prato.'
