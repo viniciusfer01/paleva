@@ -16,6 +16,7 @@ class DishesController < ApplicationController
       @dish.traits << Trait.find(trait_ids) if trait_ids.any?
       redirect_to @dish, notice: "Registro do Prato Efetuado com sucesso." 
     else
+      @traits = Trait.all
       flash.now[:notice] = 'Não foi possível registrar o prato.'
       render :new, status: :unprocessable_entity
     end
@@ -25,12 +26,18 @@ class DishesController < ApplicationController
   end
 
   def edit 
+    @traits = Trait.all
   end
 
   def update
+    @traits = Trait.all
+    trait_ids = params[:dish][:trait_ids].reject(&:blank?)
+    @dish.traits << Trait.find(trait_ids) if trait_ids.any?
+
     if @dish.update dish_params
       redirect_to @dish, notice: "Edição do Prato Efetuada com sucesso."  
     else
+      @traits = Trait.all
       flash.now[:notice] = 'Não foi possível editar o prato.'
       render :edit, status: :unprocessable_entity
     end

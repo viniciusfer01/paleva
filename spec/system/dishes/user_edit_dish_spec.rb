@@ -13,10 +13,13 @@ describe 'User edits a dish' do
     dish = Dish.create!(name: 'Pizza', description: 'Prato Italiano, que serve 3 a 4 pessoas', calories: 1200, store: store)
 
     login_as user
-    visit edit_dish_path(dish)
+    visit root_path
+    click_on 'Meus pratos'
+    click_on dish.name
+    click_on 'Editar'
     fill_in "Nome",	with: "Lasanha" 
     click_on 'Enviar'
-
+    
     expect(page).to have_content 'Edição do Prato Efetuada com sucesso.'
     expect(page).not_to have_content 'Pizza'
     expect(page).to have_content 'Lasanha'
