@@ -30,6 +30,7 @@
             <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
             <li><%= link_to "Meus pratos", dishes_path %></li>
             <li><%= link_to "Minhas Bebidas", beverages_path %></li>
+            <li><%= link_to 'Características', traits_path %></li>
 
             <%= form_with(url: search_path, method: :get) do |form| %>
               <%= form.label :query, 'Buscar item' %>

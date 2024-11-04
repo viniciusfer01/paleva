@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'User edits a dish' do
   it 'succesfully' do 
-    # improve navigation later
     user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
                         email: 'zezin@teclados.com', password: 'passwordpass')
 

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root "stores#index"
 
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
+  resources :traits, only: [:index, :new, :create]
   resources :dishes do 
     post :inactive, on: :member
     post :active, on: :member

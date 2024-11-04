@@ -1,0 +1,10 @@
+<h2>Características</h2>
+
+<%= link_to 'Nova Característica', new_trait_path %>
+
+<dl>
+  <% @traits.each do |trait| %>
+    <dt>Nome: </dt>
+    <dd><%= trait.name %></dd>
+  <% end %>
+</dl>
