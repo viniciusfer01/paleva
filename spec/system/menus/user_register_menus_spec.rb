@@ -41,4 +41,24 @@ describe 'User registers menus' do
     expect(page).to have_content 'Não foi possível salvar o cardápio.'    
     expect(page).not_to have_content 'Cardápio cadastrado com sucesso.'    
   end
+
+  it "isn't valid if name is repeated for the same user" do
+    user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+                      email: 'zezin@teclados.com', password: 'passwordpass')
+
+    store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+
+    store.menus.create!(name: 'Almoço')
+    
+    login_as user
+    visit root_path
+    click_on 'Novo Cardápio'
+    fill_in "Nome",	with: "Almoço" 
+    click_on 'Salvar'
+    
+    expect(page).to have_content 'Esse nome de cardápio já está em uso'
+    expect(page).not_to have_content 'Cardápio cadastrado com sucesso.'    
+  end
 end

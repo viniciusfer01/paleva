@@ -6,6 +6,10 @@ class MenusController < ApplicationController
   def create 
     @menu = Menu.new(menu_params)
 
+    if current_user.store.menus.find_by(name: @menu.name)
+      return redirect_to root_path, notice: "Esse nome de cardápio já está em uso"
+    end
+
     if @menu.save
       redirect_to @menu, notice: 'Cardápio cadastrado com sucesso.' 
     else 
