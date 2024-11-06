@@ -9,6 +9,8 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to @menu, notice: 'Cardápio cadastrado com sucesso.' 
     else 
+      flash.now[:notice] = 'Não foi possível salvar o cardápio.'
+      render :new, status: :unprocessable_entity
     end
   end
 
