@@ -5,6 +5,15 @@
 <% if @menu.dishes.any? %>
   <% @menu.dishes.each do |dish| %>
     <p><%= dish.name %></p>
+
+    <% if dish.portions.any? %>
+      <h3>Porções:</h3>
+      <% dish.portions.each do |portion| %>
+        <p><%= portion.description %></p>
+        <p>Preço: <%= number_to_currency(portion.price/100.0) %></p>
+      <% end %>
+    <% end %>
+
   <% end %>
 <% else %>
   <p>Não há pratos cadastrados</p>
@@ -13,6 +22,14 @@
 <% if @menu.beverages.any? %>
   <% @menu.beverages.each do |beverage| %>
     <p><%= beverage.name %></p>
+
+    <% if beverage.portions.any? %>
+      <h3>Porções:</h3>
+      <% beverage.portions.each do |portion| %>
+        <p><%= portion.description %></p>
+        <p>Preço: <%= number_to_currency(portion.price/100.0) %></p>
+      <% end %>
+    <% end %>
   <% end %>
 <% else %>
   <p>Não há bebidas cadastradas</p>
