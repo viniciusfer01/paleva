@@ -33,7 +33,7 @@ describe 'User adds menu items' do
     expect(page).to have_content 'Cardápio: Almoço'   
     expect(page).to have_content 'Almoço'    
     expect(page).to have_content 'Pizza'    
-    expect(page).to have_content 'Feijoada'    
+    expect(page).not_to have_content 'Feijoada'    
     expect(page).to have_content 'Guaraná'    
   end
 

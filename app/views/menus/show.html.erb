@@ -2,8 +2,8 @@
 
 <%= link_to 'Adicionar Itens', new_menu_menu_item_path(@menu.id) %>
 
-<% if @menu.dishes.any? %>
-  <% @menu.dishes.each do |dish| %>
+<% if @dishes.any? %>
+  <% @dishes.each do |dish| %>
     <p><%= dish.name %></p>
 
     <% if dish.portions.any? %>
@@ -19,8 +19,8 @@
   <p>Não há pratos cadastrados</p>
 <% end %>
 
-<% if @menu.beverages.any? %>
-  <% @menu.beverages.each do |beverage| %>
+<% if @beverages.any? %>
+  <% @beverages.each do |beverage| %>
     <p><%= beverage.name %></p>
 
     <% if beverage.portions.any? %>
