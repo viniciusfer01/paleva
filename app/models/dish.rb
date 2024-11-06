@@ -5,6 +5,8 @@ class Dish < ApplicationRecord
   has_many :dish_traits
   has_many :traits, through: :dish_traits
   enum :status, { active: 0, inactive: 1 }
+  has_many :menu_items
+  has_many :menus, through: :menu_items
 
   validates :name, :description, presence: true
 end

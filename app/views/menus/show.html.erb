@@ -1,1 +1,15 @@
 <h2>Cardápio: <%= @menu.name%></h2>
+
+<%= link_to 'Adicionar Itens', new_menu_menu_item_path(@menu.id) %>
+
+<% if @menu.dishes.any? %>
+  <% @menu.dishes.each do |dish| %>
+    <p><%= dish.name %></p>
+  <% end %>
+<% end %>
+
+<% if @menu.beverages.any? %>
+  <% @menu.beverages.each do |beverage| %>
+    <p><%= beverage.name %></p>
+  <% end %>
+<% end %>

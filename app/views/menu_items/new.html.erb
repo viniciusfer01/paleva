@@ -1,0 +1,16 @@
+<h1>Cadastro de Itens do Menu: <%= @menu.name %></h1>
+
+<%= form_with(model: [@menu, @menu_item]) do |f| %>
+  <div>
+    <%= f.label :dish_ids, 'Pratos' %> 
+    <%= f.collection_select :dish_ids, @dishes, :id, :name, {}, { multiple: true }  %>
+  </div>
+
+  <div>
+    <%= f.label :beverage_ids, 'Bebidas' %> 
+    <%= f.collection_select :beverage_ids, @beverages, :id, :name, {}, { multiple: true }  %>
+  </div>
+
+
+  <%= f.submit 'Salvar' %>
+<% end %>

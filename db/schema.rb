@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_05_232827) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_134546) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,6 +69,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_232827) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.index ["store_id"], name: "index_dishes_on_store_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.integer "menu_id", null: false
+    t.integer "dish_id"
+    t.integer "beverage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beverage_id"], name: "index_menu_items_on_beverage_id"
+    t.index ["dish_id"], name: "index_menu_items_on_dish_id"
+    t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -140,6 +151,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_232827) do
   add_foreign_key "dish_traits", "dishes"
   add_foreign_key "dish_traits", "traits"
   add_foreign_key "dishes", "stores"
+  add_foreign_key "menu_items", "beverages"
+  add_foreign_key "menu_items", "dishes"
+  add_foreign_key "menu_items", "menus"
   add_foreign_key "portions", "beverages"
   add_foreign_key "portions", "dishes"
   add_foreign_key "store_menus", "menus"
