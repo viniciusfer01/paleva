@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
   resources :traits, only: [:index, :new, :create]
-  resources :menus, only: [:new, :create, :show]
+  resources :menus, only: [:new, :create, :show, :index]
   resources :dishes do 
     post :inactive, on: :member
     post :active, on: :member

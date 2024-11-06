@@ -18,6 +18,10 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
   end
 
+  def index 
+    @menus = Menu.all
+  end
+
   private 
   def menu_params
     params.require(:menu).permit(:name)

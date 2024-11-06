@@ -32,6 +32,7 @@
             <li><%= link_to "Minhas Bebidas", beverages_path %></li>
             <li><%= link_to 'Características', traits_path %></li>
             <li><%= link_to 'Novo Cardápio', new_menu_path %></li>
+            <li><%= link_to 'Meus Cardápios', menus_path %></li>
 
             <%= form_with(url: search_path, method: :get) do |form| %>
               <%= form.label :query, 'Buscar item' %>
