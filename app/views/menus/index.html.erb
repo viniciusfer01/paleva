@@ -1,7 +1,11 @@
 <h2>Cardápios do Estabelecimento</h2>
 
-<ul>
-  <%= @menus.each do |menu| %>
-    <li><%= link_to menu.name, menu_path(menu) %></li>
-  <% end %>
-</ul>
+<% if @menus.any? %>
+  <ul>
+    <%= @menus.each do |menu| %>
+      <li><%= link_to menu.name, menu_path(menu) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Não há cardápios registrados...</p>
+<% end %>
