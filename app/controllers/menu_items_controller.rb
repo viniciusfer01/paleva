@@ -11,6 +11,10 @@ class MenuItemsController < ApplicationController
     dish_ids = menu_item_params[:dish_ids].reject(&:blank?)
     beverage_ids = menu_item_params[:beverage_ids].reject(&:blank?)
 
+    if dish_ids.empty? && beverage_ids.empty?
+      return redirect_to @menu, notice: 'Não foi possível cadastrar os itens'          
+    end 
+
     @menu.dishes << Dish.find(dish_ids) unless dish_ids.empty?
     @menu.beverages << Beverage.find(beverage_ids) unless beverage_ids.empty?
 

@@ -6,10 +6,14 @@
   <% @menu.dishes.each do |dish| %>
     <p><%= dish.name %></p>
   <% end %>
+<% else %>
+  <p>Não há pratos cadastrados</p>
 <% end %>
 
 <% if @menu.beverages.any? %>
   <% @menu.beverages.each do |beverage| %>
     <p><%= beverage.name %></p>
   <% end %>
+<% else %>
+  <p>Não há bebidas cadastradas</p>
 <% end %>
