@@ -43,6 +43,6 @@ describe "User views their dish" do
     expect(page).not_to have_content 'Prato: Pizza'  
     expect(page).not_to have_content 'Descrição: Prato Italiano, que serve 3 a 4 pessoas'  
     expect(page).not_to have_content '1200 kcal'
-    expect(page).to have_content 'Estabelecimentos'
+    expect(page).to have_content 'Cardápios do Estabelecimento'
   end
 end
