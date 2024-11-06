@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_040420) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_05_232827) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -71,6 +71,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_040420) do
     t.index ["store_id"], name: "index_dishes_on_store_id"
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "portions", force: :cascade do |t|
     t.string "description"
     t.integer "price"
@@ -80,6 +86,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_040420) do
     t.datetime "updated_at", null: false
     t.index ["beverage_id"], name: "index_portions_on_beverage_id"
     t.index ["dish_id"], name: "index_portions_on_dish_id"
+  end
+
+  create_table "store_menus", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "menu_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_store_menus_on_menu_id"
+    t.index ["store_id"], name: "index_store_menus_on_store_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -127,5 +142,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_040420) do
   add_foreign_key "dishes", "stores"
   add_foreign_key "portions", "beverages"
   add_foreign_key "portions", "dishes"
+  add_foreign_key "store_menus", "menus"
+  add_foreign_key "store_menus", "stores"
   add_foreign_key "stores", "users"
 end

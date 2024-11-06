@@ -1,0 +1,12 @@
+<h2>Novo Cardápio</h2>
+
+<%= form_with model: @menu do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>
