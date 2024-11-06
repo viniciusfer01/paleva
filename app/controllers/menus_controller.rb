@@ -19,7 +19,7 @@ class MenusController < ApplicationController
   end
 
   def index 
-    @menus = Menu.all
+    @menus = current_user.store.menus
   end
 
   private 

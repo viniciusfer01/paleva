@@ -2,6 +2,9 @@ class Store < ApplicationRecord
   belongs_to :user
   has_many :dishes
   has_many :beverages
+  has_many :store_menus
+  has_many :menus, through: :store_menus 
+  
   validates :brand_name, :corporate_name, :cnpj, :address, :phone, :email, :schedule, :code, presence: true
   validates :brand_name, :corporate_name, :cnpj, :phone, :email, :code, uniqueness: true
   validates :phone, :numericality => true
