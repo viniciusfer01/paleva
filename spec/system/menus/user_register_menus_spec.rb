@@ -25,7 +25,7 @@ describe 'User registers menus' do
     expect(page).to have_content 'Cardápio: Almoço'    
   end
 
-  it 'Misses fields' do 
+  it 'misses fields' do 
     user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
                         email: 'zezin@teclados.com', password: 'passwordpass')
 
