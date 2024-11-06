@@ -15,7 +15,7 @@ class MenusController < ApplicationController
   end
 
   def show 
-    @menu = Menu.find(params[:id])
+    @menu = current_user.store.menus.find(params[:id])
   end
 
   def index 
