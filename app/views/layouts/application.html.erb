@@ -18,34 +18,38 @@
   </head>
 
   <body>
-    <header>
-      <%= link_to root_path do %>
-        <h1>Páleva</h1>
-      <% end %>
-      <nav>
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= link_to "Registrar Estabelecimento", new_store_path %></li>
-            <li><%= link_to "Registrar Pratos", new_dish_path %></li>
-            <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
-            <li><%= link_to "Meus pratos", dishes_path %></li>
-            <li><%= link_to "Minhas Bebidas", beverages_path %></li>
-            <li><%= link_to 'Características', traits_path %></li>
-            <li><%= link_to 'Novo Cardápio', new_menu_path %></li>
-            <li><%= link_to 'Meus Cardápios', menus_path %></li>
+    <header class="bg-gray-800 text-white p-4">  
+      <div class="container mx-auto flex justify-between items-center">
+        <%= link_to root_path, class: "text-2xl font-bold" do %>
+          <h1>Páleva</h1>
+        <% end %>
+        <nav>
+          <ul class="flex space-x-4">
+            <% if user_signed_in? %>
+              <li><%= link_to "Registrar Estabelecimento", new_store_path %></li>
+              <li><%= link_to "Registrar Pratos", new_dish_path %></li>
+              <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
+              <li><%= link_to "Meus pratos", dishes_path %></li>
+              <li><%= link_to "Minhas Bebidas", beverages_path %></li>
+              <li><%= link_to 'Características', traits_path %></li>
+              <li><%= link_to 'Novo Cardápio', new_menu_path %></li>
+              <li><%= link_to 'Meus Cardápios', menus_path %></li>
+              
+              <li>
+                <%= form_with(url: search_path, method: :get, class: "flex items-center space-x-2") do |form| %>
+                  <%= form.label :query, 'Buscar item', class: "sr-only" %>
+                  <%= form.text_field :query, class: "px-2 py-1 rounded bg-gray-700 text-white" %>
+                  <%= form.submit 'Buscar', class: "px-3 py-1 bg-blue-500 rounded hover:bg-blue-600" %>
+                <% end %>
+              </li>
 
-            <%= form_with(url: search_path, method: :get) do |form| %>
-              <%= form.label :query, 'Buscar item' %>
-              <%= form.text_field :query %>
-              <%= form.submit 'Buscar' %>
+              <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'Entrar', new_user_session_path %></li>
             <% end %>
-
-            <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to 'Entrar', new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </div>
     </header>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= notice %>
