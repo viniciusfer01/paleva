@@ -1,0 +1,13 @@
+<h2>Pedido: <%= @order.code %></h2>
+<p><%= Order.human_attribute_name(:status) %>: <%= I18n.translate(@order.status) %></p>
+<p>Dados do cliente:</p>
+<dl>
+  <dt>Nome:</dt> 
+  <dd><%= @order.name %></dd>
+  <dt>Telefone:</dt>
+  <dd><%= @order.phone %></dd>
+  <dt>Email:</dt>
+  <dd><%= @order.email %></dd>
+  <dt>CPF:</dt>
+  <dd><%= @order.cpf %></dd>
+</dl>

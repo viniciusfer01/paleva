@@ -1,5 +1,6 @@
 <h2>Cardápio: <%= @menu.name%></h2>
 
+<%= link_to 'Novo Pedido', new_order_path %>
 <%= link_to 'Adicionar Itens', new_menu_menu_item_path(@menu.id) %>
 
 <% if @dishes.any? %>

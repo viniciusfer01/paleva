@@ -1,0 +1,18 @@
+<h2>Novo Pedido</h2>
+
+<% if(@order.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% @order.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+    
+  </ul>
+<% end %>
+
+<%= form_with model: @order do |f| %>
+  <%= f.label :phone, 'Telefone' %>
+  <%= f.number_field :phone %>
+
+  <%= f.submit 'Gravar Pedido' %>
+<% end %>

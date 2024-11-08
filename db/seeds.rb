@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+                        email: 'zezin@teclados.com', password: 'passwordpass')
+
+store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                  cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                  email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+
+store.menus.create!(name: 'Almoço')                  
+store.menus.create!(name: 'Jantar')   

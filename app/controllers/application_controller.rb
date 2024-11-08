@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # return the path based on resource
-    if resource.is_a?(User) 
+    if resource.is_a?(User) && current_user.store.nil?
       new_store_url
-    elsif resource.is_a?(User) 
+    elsif resource.is_a?(User) && current_user.store
       root_url 
     else 
       return
