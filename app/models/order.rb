@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   validates :name, :price, presence: true
   validates :code, uniqueness: true
   
-  enum :status, { pending: 0, prepping: 1, canceled: 2, ready: 3, delivered: 4 }
+  enum :status, { started: 0, prepping: 1, canceled: 2, ready: 3, delivered: 4, pending: 5 }
 
   before_create :generate_code
 

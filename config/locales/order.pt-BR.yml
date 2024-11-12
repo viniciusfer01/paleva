@@ -3,6 +3,7 @@ pt-BR:
   prepping: "em preparação"
   canceled: "cancelado"
   ready: "pronto"
+  started: "Iniciado"
   delivered: "entregue"
   activerecord:
     models:

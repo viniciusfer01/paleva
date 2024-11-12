@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order.cpf = current_user.cpf
 
     if @order.save
-      redirect_to order_path(@order.id), notice: 'Pedido gravado com sucesso'
+      redirect_to order_path(@order.id), notice: 'Pedido iniciado com sucesso'
     else
       flash.now[:notice] = 'Não foi possível registrar seu pedido'
       render :new, status: :unprocessable_entity
