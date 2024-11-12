@@ -14,5 +14,33 @@
   <%= f.label :phone, 'Telefone' %>
   <%= f.number_field :phone %>
 
-  <%= f.submit 'Iniciar Pedido' %>
+  <%= f.label :email, 'Email' %>
+  <%= f.email_field :email %>
+
+  <%= f.label :cpf, 'CPF' %>
+  <%= f.text_field :cpf %>
+
+  <h3>Pratos</h3>
+  <% @dishes.each do |dish| %>
+    <div class="order_dish" >
+      <%= f.fields_for :order_items, @order.order_items.build do |item_form| %>
+        <%= item_form.hidden_field :portion_id, value: dish.portions.first.id %>
+        <%= item_form.label :note, 'Observação sobre o prato' %>
+        <%= item_form.text_area :note %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h3>Bebidas</h3>
+  <% @beverages.each do |beverage| %>
+    <div class="order_beverage" >
+      <%= f.fields_for :order_items, @order.order_items.build do |item_form| %>
+        <%= item_form.hidden_field :portion_id, value: beverage.portions.first.id %>
+        <%= item_form.label :note, 'Observação sobre a bebida' %>
+        <%= item_form.text_area :note %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.submit 'Gravar Pedido' %>
 <% end %>
