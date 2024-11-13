@@ -32,4 +32,8 @@ Rails.application.routes.draw do
     resources :portions, only: [:new, :create, :edit, :update]
   end
   get 'search', to: 'searches#index'
+
+  namespace :api do 
+    resources :orders, only: [:index]
+  end
 end
