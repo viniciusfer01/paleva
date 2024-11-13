@@ -22,5 +22,6 @@ class Employee < ApplicationRecord
   def associate_store
     pre_register = PreRegisteredEmployee.find_by(cpf: self.cpf)
     self.store = pre_register.store
+    pre_register.used = true
   end
 end
