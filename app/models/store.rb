@@ -6,6 +6,7 @@ class Store < ApplicationRecord
   has_many :menus, through: :store_menus 
   has_many :orders
   has_many :pre_registered_employees
+  has_many :employees
   
   validates :brand_name, :corporate_name, :cnpj, :address, :phone, :email, :schedule, :code, presence: true
   validates :brand_name, :corporate_name, :cnpj, :phone, :email, :code, uniqueness: true

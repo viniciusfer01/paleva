@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user_or_employee!
   def new
     @menu = Menu.new
   end
@@ -7,7 +7,9 @@ class MenusController < ApplicationController
   def create 
     @menu = Menu.new(menu_params)
 
-    if current_user.store.menus.find_by(name: @menu.name)
+    store = current_store
+
+    if store.menus.find_by(name: @menu.name)
       return redirect_to root_path, notice: "Esse nome de cardápio já está em uso"
     end
 
@@ -20,17 +22,25 @@ class MenusController < ApplicationController
   end
 
   def show 
-    @menu = current_user.store.menus.find(params[:id])
+    @menu = current_store.menus.find(params[:id])
     @dishes = @menu.dishes.active
     @beverages = @menu.beverages.active
   end
 
   def index 
-    @menus = current_user.store.menus
+    @menus = current_store.menus
   end
 
   private 
   def menu_params
     params.require(:menu).permit(:name)
+  end
+
+  def current_store
+    if user_signed_in?
+      current_user.store
+    elsif employee_signed_in?
+      current_employee.store
+    end
   end
 end

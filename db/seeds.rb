@@ -15,5 +15,8 @@ store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Past√
                   cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
                   email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
 
+# Employee.create!(email: 'tiringa@email.com', cpf: '24641470014', name: 'Tiringa', last_name: 'da Silva', 
+#                  password: 'passwordpass', store: store)
+
 store.menus.create!(name: 'Almo√ßo')                  
 store.menus.create!(name: 'Jantar')   

@@ -8,7 +8,7 @@ describe "User logs in" do
     visit new_user_session_path
     fill_in "E-mail",	with: "zezin@teclados.com"                         
     fill_in "Senha",	with: "passwordpass"
-    click_on "Log in"
+    click_on "Login"
     
     expect(page).to have_content 'Por favor, registre sua loja.' 
     within('nav') do 

@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2>Login para donos de restaurantes</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -19,8 +19,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Login" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= link_to 'Login para funcionários', new_employee_session_path %>
+
+<%= render "users/shared/links" %>
