@@ -1,0 +1,11 @@
+<h2>Pré Cadastro de novo funcionário:</h2>
+
+<%= form_with model: @pre_registered_employee do |f| %>
+  <%= f.label :email, 'email' %>
+  <%= f.email_field :email %>
+
+  <%= f.label :cpf, 'CPF' %>
+  <%= f.text_field :cpf %>
+
+  <%= f.submit 'Gravar Funcionário' %>
+<% end %>

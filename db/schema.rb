@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_12_192414) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_13_024707) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -125,6 +125,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_12_192414) do
     t.index ["dish_id"], name: "index_portions_on_dish_id"
   end
 
+  create_table "pre_registered_employees", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "cpf", null: false
+    t.boolean "used", default: false, null: false
+    t.integer "store_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_pre_registered_employees_on_store_id"
+  end
+
   create_table "store_menus", force: :cascade do |t|
     t.integer "store_id", null: false
     t.integer "menu_id", null: false
@@ -186,6 +196,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_12_192414) do
   add_foreign_key "orders", "users"
   add_foreign_key "portions", "beverages"
   add_foreign_key "portions", "dishes"
+  add_foreign_key "pre_registered_employees", "stores"
   add_foreign_key "store_menus", "menus"
   add_foreign_key "store_menus", "stores"
   add_foreign_key "stores", "users"

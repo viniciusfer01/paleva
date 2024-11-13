@@ -4,8 +4,8 @@ pt-BR:
   activerecord:
     models:
       beverage:
-        one: "Beverage"
-        other: "Beverages"
+        one: "Bebida"
+        other: "Bebidas"
     attributes:
       beverage:
         name: "Nome"

@@ -1,0 +1,14 @@
+<h1>Funcionários Pré Cadastrados:</h1>
+
+<%= link_to 'Pré cadastrar funcionário', new_pre_registered_employee_path %>
+
+<dl>
+  <% @pre_registered_employees.each do |employee| %>
+    <dt>Email:</dt> 
+    <dd><%= employee.email %></dd>
+    <dt>CPF:</dt>
+    <dd><%= employee.cpf %></dd>
+    <dt>Status:</dt> 
+    <dd><%= employee.used %></dd>
+  <% end %>
+</dl>

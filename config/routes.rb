@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :stores, only: [:edit, :update, :show, :index, :new, :create]
   resources :traits, only: [:index, :new, :create]
   resources :orders, only: [:show, :new, :create]
+  resources :pre_registered_employees, only: [:new, :create, :index]
   resources :menus, only: [:new, :create, :show, :index] do 
     resources :menu_items, only: [:new, :create]
   end
