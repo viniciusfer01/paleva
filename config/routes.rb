@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   namespace :api do 
     resources :orders, only: [:index, :show] do 
       post :prepping, on: :member
+      post :ready, on: :member
     end
   end
 end
