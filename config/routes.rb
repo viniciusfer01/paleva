@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get 'search', to: 'searches#index'
 
   namespace :api do 
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show] do 
+      post :prepping, on: :member
+    end
   end
 end

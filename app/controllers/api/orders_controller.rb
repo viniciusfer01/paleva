@@ -15,4 +15,12 @@ class Api::OrdersController < ActionController::API
     order_object = {order: order, store: store}
     render status: 200, json: order_object 
   end
+
+  def prepping
+    store = Store.find_by(code: params[:code])
+    order = store.orders.find_by(code: params[:id])
+    order.status = 'prepping'
+    order_object = {order: order, store: store}
+    render status: 200, json: order_object
+  end
 end
