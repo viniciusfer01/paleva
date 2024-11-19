@@ -21,7 +21,7 @@ class MenusController < ApplicationController
   end
 
   def show 
-    @menu = current_store.menus.find_by(params[:id])
+    @menu = current_store.menus.find(params[:id])
     @dishes = @menu.dishes.active
     @beverages = @menu.beverages.active
   end
