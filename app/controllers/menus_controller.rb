@@ -6,10 +6,9 @@ class MenusController < ApplicationController
 
   def create 
     @menu = Menu.new(menu_params)
+    @menu.store = current_store
 
-    store = current_store
-
-    if store.menus.find_by(name: @menu.name)
+    if current_store.menus.find_by(name: @menu.name)
       return redirect_to root_path, notice: "Esse nome de cardápio já está em uso"
     end
 
@@ -22,7 +21,7 @@ class MenusController < ApplicationController
   end
 
   def show 
-    @menu = current_store.menus.find(params[:id])
+    @menu = current_store.menus.find_by(params[:id])
     @dishes = @menu.dishes.active
     @beverages = @menu.beverages.active
   end

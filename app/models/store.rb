@@ -2,8 +2,7 @@ class Store < ApplicationRecord
   belongs_to :user
   has_many :dishes
   has_many :beverages
-  has_many :store_menus
-  has_many :menus, through: :store_menus 
+  has_many :menus
   has_many :orders
   has_many :pre_registered_employees
   has_many :employees
