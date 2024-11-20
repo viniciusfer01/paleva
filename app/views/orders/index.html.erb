@@ -1,0 +1,27 @@
+<h2>Pedidos</h2>
+
+<% if @orders.any? %>
+  <% @orders.each do |order| %>
+    <div class="order">
+      <h3><%= order.code %></h3>
+      <p>Status do Pedido: <%= I18n.translate(order.status) %></p>
+      <ul>
+        <% order.order_items.each do |item| %>
+          <li>
+            <% if item.portion.dish.present? %>
+              <%= item.portion.dish.name %> - <%= item.portion.description %>
+            <% elsif item.portion.beverage.present? %>
+              <%= item.portion.beverage.name %> - <%= item.portion.description %>
+            <% end %>
+            <% if item.note.present? %>
+              <p>Observação: <%= item.note %></p>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <p>Valor Total: <%= number_to_currency(order.price/100) %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>Não há pedidos registrados...</p>
+<% end %>

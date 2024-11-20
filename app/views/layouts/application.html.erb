@@ -25,16 +25,13 @@
         <% end %>
         <nav>
           <ul class="flex space-x-4">
-            <% if user_signed_in? %>
+            <% if user_signed_in? || employee_signed_in? %>
               <li><%= link_to "Registrar Estabelecimento", new_store_path %></li>
-              <li><%= link_to "Registrar Pratos", new_dish_path %></li>
-              <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
               <li><%= link_to "Meus pratos", dishes_path %></li>
               <li><%= link_to "Minhas Bebidas", beverages_path %></li>
               <li><%= link_to 'Características', traits_path %></li>
               <li><%= link_to 'Meus Cardápios', menus_path %></li>
               <li><%= link_to 'Meus Pedidos', orders_path %></li>
-              <li><%= link_to 'Meus funcionários', pre_registered_employees_path %></li>
               
               <li>
                 <%= form_with(url: search_path, method: :get, class: "flex items-center space-x-2") do |form| %>
@@ -45,6 +42,14 @@
               </li>
 
               <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Registrar Pratos", new_dish_path %></li>
+                <li><%= link_to "Registrar Bebidas", new_beverage_path %></li>
+                <li><%= link_to 'Meus funcionários', pre_registered_employees_path %></li>
+                <li><%= current_user %></li>
+              <% elsif employee_signed_in? %>
+                <li><%= current_employee.name %></li>
+              <% end %>     
             <% else %>
               <li><%= link_to 'Entrar', new_user_session_path %></li>
             <% end %>
@@ -52,7 +57,7 @@
         </nav>
       </div>
     </header>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5 block">
       <%= notice %>
       <%= alert %>
       <%= yield %>
