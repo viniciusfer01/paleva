@@ -26,7 +26,9 @@ describe 'User creates an order' do
     click_on 'Almoço'
     click_on 'Novo Pedido'
     fill_in 'Telefone', with: '99999999998'
-    fill_in 'CPF', with: '66101052001'
+    fill_in 'Nome', with: 'Fulano'
+    fill_in 'Email', with: 'fulano@email.com'
+    fill_in 'CPF', with: '37739673064'
     
     within('.order_dish') do
       fill_in 'Observação sobre o prato', with: 'Sem cebola'
@@ -41,10 +43,10 @@ describe 'User creates an order' do
     expect(page).to have_content 'Pedido gravado com sucesso' 
     expect(page).to have_content "Pedido: A123456B"
     expect(page).to have_content 'Dados do cliente:' 
-    expect(page).to have_content 'Nome: Zezin' 
+    expect(page).to have_content 'Nome: Fulano' 
     expect(page).to have_content 'Telefone: 99999999998' 
-    expect(page).to have_content 'Email: zezin@teclados.com' 
-    expect(page).to have_content 'CPF: 66101052001' 
+    expect(page).to have_content 'Email: fulano@email.com' 
+    expect(page).to have_content 'CPF: 37739673064' 
     expect(page).to have_content 'Status do Pedido: Aguardando confirmação da cozinha' 
     expect(page).to have_content 'Feijoada - Porção grande'
     expect(page).to have_content 'Observação: Sem cebola'

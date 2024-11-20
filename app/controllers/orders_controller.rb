@@ -8,12 +8,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.name = current_user.name
     @order.price = calculate_total_price
     @order.store = current_user.store
     @order.user = current_user
-    @order.email = current_user.email
-    @order.cpf = current_user.cpf
 
     if @order.save
       redirect_to order_path(@order.id), notice: 'Pedido gravado com sucesso'
