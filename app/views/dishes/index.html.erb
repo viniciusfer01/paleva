@@ -1,11 +1,13 @@
-<h2>Pratos do estabelecimento:</h2>
+<h2>Pratos do estabelecimento</h2>
 
 <% if @dishes.any? %>
   <% @dishes.each do |dish| %>
     <dl>
         <dt>Nome:</dt>
         <dd><%= link_to dish.name, dish %></dd>
-        <p><%= dish.calories %> kcal</p>
+        <% if dish.calories %> 
+          <p><%= dish.calories %> kcal</p>
+        <% end %>
         <p><%= Dish.human_attribute_name(:status) %>: <%= I18n.translate(dish.status) %></p>
     </dl>
   <% end %>

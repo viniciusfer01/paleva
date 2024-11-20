@@ -17,7 +17,7 @@ describe "User sees the dishes" do
     visit root_path
     click_on 'Meus pratos'
 
-    expect(page).to have_content 'Pratos do estabelecimento:'
+    expect(page).to have_content 'Pratos do estabelecimento'
     expect(page).to have_content 'Nome: Pizza'  
     expect(page).to have_content '1200 kcal'  
     expect(page).to have_content 'Status do Prato: Ativo'  

@@ -17,8 +17,9 @@ describe "User removes dish" do
     click_on 'Pizza'
     click_on 'Deletar'    
 
-    expect(page).to have_content 'Pratos do estabelecimento:' 
+    expect(page).to have_content 'Pratos do estabelecimento' 
     expect(page).to have_content 'Prato deletado com sucesso' 
+    expect(page).to have_content 'Não há pratos cadastrados ainda...' 
     expect(page).not_to have_content 'Pizza' 
   end
 end

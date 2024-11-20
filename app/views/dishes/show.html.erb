@@ -5,8 +5,9 @@
     <dt><%= Dish.human_attribute_name(:status) %>:</dt>
     <dd><%= I18n.t(@dish.status) %></dd>
 </dl>
+  <% if @dish.calories %>
     <p><%= @dish.calories %> kcal</p>
-
+  <% end %>
 
 <% if @dish.active? %>
   <%= button_to 'Desativar Prato', inactive_dish_path %>
@@ -19,7 +20,7 @@
     <dt>Descrição:</dt>
     <dd><%= link_to portion.description, edit_dish_portion_path(@dish, portion) %></dd>
     <dt>Preço:</dt>
-    <dd><%= number_to_currency((portion.price)/100.0) %></dd>
+    <dd><%= number_to_currency(portion.price) %></dd>
   </dl>
 <% end %>
 
@@ -33,3 +34,4 @@
 <%= link_to 'Adicionar Porções', new_dish_portion_path(@dish) %>
 <%= link_to 'Editar', edit_dish_path(@dish) %>
 <%= link_to 'Deletar', dish_path(@dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<%= link_to 'Voltar para listagem de pratos', dishes_path %>

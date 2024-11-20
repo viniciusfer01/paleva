@@ -17,7 +17,7 @@ describe "User adds a portion to dish" do
     click_on 'Pizza'
     click_on 'Adicionar Porções'
     fill_in "Descrição",	with: "Grande (8 fatias)"
-    fill_in "Preço",	with: 12000
+    fill_in "Preço",	with: 120
     click_on 'Gravar'
 
     expect(page).to have_content 'Descrição: Grande (8 fatias)'

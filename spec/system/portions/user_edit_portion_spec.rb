@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "User edits a portion" do
-  it "that is a dish succesfully" do
+  it "that is in a dish succesfully" do
     user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
                         email: 'zezin@teclados.com', password: 'passwordpass')
 
@@ -11,7 +11,7 @@ describe "User edits a portion" do
 
     dish = Dish.create!(name: 'Pizza', description: 'Prato Italiano, que serve 3 a 4 pessoas', calories: 1200, store: store)
 
-    dish.portions.create!(description: 'Grande (12 fatias)', price: 120_00)
+    dish.portions.create!(description: 'Grande (12 fatias)', price: 120)
     
     login_as user
     visit root_path
@@ -19,7 +19,7 @@ describe "User edits a portion" do
     click_on 'Pizza'
     click_on 'Grande (12 fatias)'
     fill_in "Descrição",	with: "Pequena (4 fatias)"
-    fill_in "Preço",	with: 45_00
+    fill_in "Preço",	with: 45
     click_on 'Gravar'
     
     expect(page).to have_content 'Preço: R$ 45,00'
@@ -28,7 +28,7 @@ describe "User edits a portion" do
     expect(page).to have_content 'Porção atualizada com sucesso'
   end 
 
-  it "that is a beverage succesfully" do
+  it "that is in a beverage succesfully" do
     user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
                         email: 'zezin@teclados.com', password: 'passwordpass')
 
