@@ -14,20 +14,27 @@ describe 'Order API' do
       beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante de cola',
                                   is_alcoholic: false, store: store)
 
-      first_portion = Portion.create!(description: 'Porção grande', price: 3000, dish: dish)
-      second_portion = Portion.create!(description: 'Lata 350ml', price: 500, beverage: beverage)
+      first_portion = dish.portions.create!(description: 'Porção grande', price: 3000, dish: dish)
+      second_portion = beverage.portions.create!(description: 'Lata 350ml', price: 500, beverage: beverage)
 
-      order = Order.create!(name: user.name, phone: '99999999999', email: user.email,
+      order = store.orders.create!(name: user.name, phone: '99999999999', email: user.email,
                             cpf: user.cpf, price: 3500, user: user, store: store)
+
+      order2 = store.orders.create!(name: user.name, phone: '99999999999', email: user.email,
+                            cpf: user.cpf, price: 3500, user: user, store: store)                            
 
       order.order_items.create!(order: order, portion: first_portion, note: 'Bem quente')
       order.order_items.create!(order: order, portion: second_portion, note: 'Bem gelada')
+
+      order2.order_items.create!(order: order, portion: first_portion, note: 'Pelando')
+      order2.order_items.create!(order: order, portion: second_portion, note: 'Morfado')
 
       get "/api/orders?code=#{store.code}"
 
       expect(response.status).to eq 200  
       expect(response.content_type).to include 'application/json'  
       expect(response.body).to include(order.code)  
+      expect(response.body).to include(order2.code)  
     end
 
     it 'filters orders by status' do 
@@ -72,6 +79,55 @@ describe 'Order API' do
       expect(response.body).not_to include(order.code)  
       expect(response.body).not_to include(other_order.code)  
       expect(response.body).to include(second_order.code)  
+    end
+
+    it 'and it does not have any orders' do 
+      user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+                        email: 'zezin@teclados.com', password: 'passwordpass')
+
+      store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                    cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                    email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+      
+      dish = Dish.create!(name: 'Feijoada', description: 'Feijoada completa', store: store)
+      beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante de cola',
+                                  is_alcoholic: false, store: store)
+
+      Portion.create!(description: 'Porção grande', price: 3000, dish: dish)
+      Portion.create!(description: 'Lata 350ml', price: 500, beverage: beverage)
+
+      get "/api/orders?code=#{store.code}"
+
+      expect(response.status).to eq 404  
+      expect(response.content_type).to include 'application/json'  
+    end
+
+    it 'and the store does not exist' do 
+      user = User.create!(cpf: '66101052001', name: 'Zezin', last_name: 'do Teclados', 
+                        email: 'zezin@teclados.com', password: 'passwordpass')
+
+      store = Store.create!(corporate_name: 'Zezin Alimentos LTDA', brand_name: 'Pastéis Zezin', 
+                    cnpj: '40599424000139', address: 'Rua das tulipas, 18', phone: '2345123456', 
+                    email: 'pasteis@zezin.com', schedule: '23456M123456', user: user)
+      
+      dish = Dish.create!(name: 'Feijoada', description: 'Feijoada completa', store: store)
+      beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante de cola',
+                                  is_alcoholic: false, store: store)
+
+      Portion.create!(description: 'Porção grande', price: 3000, dish: dish)
+      Portion.create!(description: 'Lata 350ml', price: 500, beverage: beverage)
+
+      get "/api/orders?code=#{'ABC123'}"
+
+      expect(response.status).to eq 404  
+      expect(response.content_type).to include 'application/json'  
+    end
+
+    it 'and the status does not exist' do 
+      get "/api/orders?code=#{'ABC123'}&status=prepping"
+
+      expect(response.status).to eq 404  
+      expect(response.content_type).to include 'application/json'  
     end
 
     context "Get /api/orders/:id?code=store_code" do
