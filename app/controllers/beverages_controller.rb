@@ -57,7 +57,7 @@ class BeveragesController < ApplicationController
 
   private
   def dish_params
-    params.require(:beverage).permit(:name, :description, :calories, :is_alcoholic)
+    params.require(:beverage).permit(:name, :description, :calories, :photo, :is_alcoholic)
   end
 
   def set_beverage_and_check_owner

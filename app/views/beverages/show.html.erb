@@ -7,7 +7,14 @@
     <dt><%= Beverage.human_attribute_name(:status) %>:</dt>
     <dd><%= I18n.translate(@beverage.status) %></dd>
 </dl>
+  <% if @beverage.calories %>
     <p><%= @beverage.calories %> kcal</p>
+  <% end %>
+<% if @beverage.photo.attached? %>
+  <div>
+    <%= image_tag @beverage.photo, alt: "Foto da Bebida" %>
+  </div>
+<% end %>
 
 <% if @beverage.active? %>
   <%= button_to 'Desativar Bebida', inactive_beverage_path %>

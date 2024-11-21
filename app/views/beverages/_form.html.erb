@@ -27,6 +27,10 @@
     <%= form.number_field :calories %>
   </div>
   <div>
+    <%= form.label :photo, "Foto" %>
+    <%= form.file_field :photo %>
+  </div>
+  <div>
     <%= form.submit "Enviar" %>
   </div>
 <% end %>
