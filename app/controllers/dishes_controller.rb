@@ -65,7 +65,7 @@ class DishesController < ApplicationController
 
   private
   def dish_params
-    params.require(:dish).permit(:name, :description, :calories)
+    params.require(:dish).permit(:name, :description, :calories, :photo)
   end
 
   def set_dish_and_check_owner

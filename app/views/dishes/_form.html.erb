@@ -9,7 +9,7 @@
 <% end %>
 
 
-<%= form_with model: dish do |form| %>
+<%= form_with model: dish, local: true, multipart: true do |form| %>
   <div>
     <%= form.label :name, "Nome" %>
     <%= form.text_field :name %>
@@ -25,6 +25,10 @@
   <div>
     <%= form.label :trait_ids, 'Tipos' %><br>
     <%= form.collection_select :trait_ids, @traits, :id, :name, {}, { multiple: true } %>
+  </div>
+  <div>
+    <%= form.label :photo, "Foto" %>
+    <%= form.file_field :photo %>
   </div>
   <div>
     <%= form.submit "Enviar" %>

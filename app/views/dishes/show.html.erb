@@ -9,6 +9,12 @@
     <p><%= @dish.calories %> kcal</p>
   <% end %>
 
+<% if @dish.photo.attached? %>
+  <div>
+    <%= image_tag @dish.photo, alt: "Foto do Prato" %>
+  </div>
+<% end %>
+
 <% if @dish.active? %>
   <%= button_to 'Desativar Prato', inactive_dish_path %>
 <% else %>
